@@ -1,11 +1,19 @@
+{% load static %}
 <html>
     <head>
         <title>Artur Reinhardt</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <div class="page-header">
+            <h1><a href="/">Artur Reinhardt</a></h1>
+        </div>
+
         <div>
-            <h1>Artur Reinhardt</h1>
-            <h2>Bienvenido a mi blog personal</h2>
+            <h3>Bienvenido a mi blog personal</h3>
         </div>
 
         <div>
@@ -17,15 +25,22 @@
         <div>
             <h3>Comenta en mi libro de visitas:</h3>
         </div>
-        <br>
-        {% for post in posts %}
-            <div>
-                <p> publicado: {{ post.published_date }}</p>
-                <h4>{{ post.title }}</h4>
-                <h5>{{ post.author }}</h5>
-                <p>{{ post.text|linebreaksbr }}</p>
-                <br>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p> publicado: {{ post.published_date }}</p>
+                            </div>
+                            <h2><a href="">{{ post.title }}</a></h2>
+                            <h4> de: {{ post.author }}</h4>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
+        </div>
     </body>
 </html>
